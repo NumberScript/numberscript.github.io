@@ -2,7 +2,21 @@
 const editor = document.getElementById('numberscript-editor');
 const highlight = document.getElementById('numberscript-highlight');
 
+function escapeHtml(str) {
+  return str.replace(/[&<>"']/g, function(m) {
+    switch (m) {
+      case '&': return '&amp;';
+      case '<': return '&lt;';
+      case '>': return '&gt;';
+      case '"': return '&quot;';
+      case "'": return '&#39;';
+    }
+  });
+}
+
 function highlightNumberScript(code) {
+  // Escape HTML first!
+  code = escapeHtml(code);
   // Basic highlighting: keywords, numbers, operators, functions, comments
   return code
     .replace(/(solve|let|const|set|to|from)\b/g, '<span class="ns-keyword">$1</span>')
