@@ -35,7 +35,7 @@ body {
   margin-right: 24px;
   font-size: 1.08em;
   letter-spacing: 0.5px;
-  color: #3794ff;
+  color: #ffd600;
 }
 
 .vs-menubar button,
@@ -163,7 +163,7 @@ body {
 .vs-sidebar-header {
   font-size: 0.97em;
   font-weight: 600;
-  color: #3794ff;
+  color: #ffd600;
   padding: 14px 18px 6px 18px;
   letter-spacing: 0.5px;
 }
@@ -213,7 +213,7 @@ body {
 .vs-tab.selected {
   background: #1e1e1e;
   color: #fff;
-  border-bottom: 2px solid #3794ff;
+  border-bottom: 2px solid #ffd600;
 }
 .vs-tab-close {
   margin-left: 8px;
@@ -230,12 +230,12 @@ body {
 .vs-main {
   margin-left: 268px;
   margin-top: 34px;
-  padding: 16px 24px 0 24px;
-  height: calc(100vh - 36px - 34px - 28px); /* minus menubar, tabs, statusbar */
+  padding: 0 8px 0 8px;
+  height: calc(100vh - 36px - 34px - 28px);
   background: #1e1e1e;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 4px;
   box-sizing: border-box;
   min-width: 0;
 }
@@ -243,12 +243,13 @@ body {
 .vs-editor-toolbar {
   display: flex;
   align-items: center;
-  gap: 16px;
-  margin-bottom: 4px;
+  gap: 8px;
+  margin-bottom: 2px;
   margin-top: 0;
+  min-height: 28px;
 }
 .vs-editor-label {
-  color: #3794ff;
+  color: #ffd600;
   font-size: 1.08em;
   font-weight: 600;
   letter-spacing: 0.5px;
@@ -263,9 +264,9 @@ body {
   border: 1px solid #333;
   border-radius: 4px;
   background: #1e1e1e;
-  margin-bottom: 8px;
+  margin-bottom: 4px;
   box-shadow: 0 2px 8px #0002;
-  min-height: 160px;
+  min-height: 80px;
   max-height: none;
   height: auto;
   overflow: hidden;
@@ -274,22 +275,22 @@ body {
 #numberscript-editor, #numberscript-highlight {
   width: 100%;
   height: 100%;
-  min-height: 120px;
+  min-height: 60px;
   max-height: none;
   background: transparent;
   color: transparent;
   caret-color: #d4d4d4;
   border: none;
   resize: none;
-  font-size: 1.1em;
+  font-size: 1.05em;
   font-family: 'Fira Mono', 'Consolas', 'Monaco', monospace;
   position: absolute;
   top: 0;
   left: 0;
   z-index: 2;
   outline: none;
-  padding: 16px;
-  line-height: 1.6;
+  padding: 8px;
+  line-height: 1.5;
   border-radius: 0;
   box-sizing: border-box;
 }
@@ -306,8 +307,8 @@ body {
   margin: 10px 0 0 0;
 }
 .vs-run-btn {
-  background: #007acc;
-  color: #fff;
+  background: #ffd600;
+  color: #222;
   border: none;
   padding: 7px 22px;
   border-radius: 3px;
@@ -320,7 +321,8 @@ body {
   margin-left: 8px;
 }
 .vs-run-btn:hover, .vs-run-btn:focus {
-  background: #005a9e;
+  background: #ffe066;
+  color: #222;
   outline: none;
 }
 
@@ -328,16 +330,16 @@ body {
   background: #232323;
   border: 1px solid #333;
   border-radius: 4px;
-  padding: 16px 14px 12px 14px;
-  margin-top: 8px;
+  padding: 8px 8px 6px 8px;
+  margin-top: 2px;
   box-shadow: 0 2px 8px #0002;
-  min-height: 60px;
+  min-height: 32px;
   flex: 0 0 auto;
 }
 .vs-output-header {
   font-weight: 600;
-  color: #3794ff;
-  margin-bottom: 6px;
+  color: #ffd600;
+  margin-bottom: 2px;
   font-size: 1em;
   letter-spacing: 0.5px;
 }
@@ -360,15 +362,15 @@ body {
   right: 0;
   bottom: 0;
   height: 28px;
-  background: #007acc;
-  color: #fff;
+  background: #ffd600;
+  color: #222;
   display: flex;
   align-items: center;
   font-size: 0.98em;
   padding: 0 18px;
   z-index: 100;
   box-shadow: 0 -1px 4px #0004;
-  border-top: 1px solid #005a9e;
+  border-top: 1px solid #bfa800;
 }
 .vs-statusbar-item {
   margin-right: 18px;
@@ -427,7 +429,7 @@ body {
 
 /* Focus styles for accessibility */
 button:focus, .vs-tab:focus, .vs-activitybar-icon:focus {
-  outline: 2px solid #3794ff;
+  outline: 2px solid #ffd600;
   outline-offset: 2px;
 }
 
