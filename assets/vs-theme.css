@@ -13,35 +13,45 @@ body {
 }
 
 .vs-menubar {
-  background: #2d2d2d;
+  background: #2c2c32;
   color: #fff;
-  padding: 0 10px;
-  height: 40px;
+  padding: 0 12px;
+  height: 36px;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   border-bottom: 1px solid #222;
+  box-shadow: 0 1px 0 #0008;
   position: relative;
 }
 
 .vs-title {
-  font-weight: bold;
-  margin-right: 20px;
-  font-size: 1.1em;
+  font-weight: 600;
+  margin-right: 24px;
+  font-size: 1.08em;
+  letter-spacing: 0.5px;
+  color: #d7ba7d;
 }
 
-.vs-menubar button {
-  background: #3c3c3c;
-  color: #fff;
-  border: none;
-  padding: 6px 12px;
+.vs-menubar button,
+.vs-dropdown-btn {
+  background: #2d2d30;
+  color: #d4d4d4;
+  border: 1px solid #222;
+  padding: 4px 14px;
   margin-right: 2px;
-  border-radius: 3px;
+  border-radius: 2px;
   cursor: pointer;
-  transition: background 0.2s;
+  font-size: 1em;
+  font-family: inherit;
+  transition: background 0.15s, border 0.15s;
+  box-shadow: none;
 }
-.vs-menubar button:hover {
-  background: #505050;
+.vs-menubar button:hover,
+.vs-dropdown-btn:hover {
+  background: #37373d;
+  border: 1px solid #007acc;
+  color: #fff;
 }
 
 .vs-menubar-dropdown {
@@ -50,28 +60,20 @@ body {
 }
 
 .vs-dropdown-btn {
-  background: #3c3c3c;
-  color: #fff;
-  border: none;
-  padding: 6px 12px;
-  border-radius: 3px;
-  cursor: pointer;
   margin-left: 4px;
-}
-.vs-dropdown-btn:hover {
-  background: #505050;
 }
 .vs-dropdown-content {
   display: none;
   position: absolute;
-  background: #2d2d2d;
+  background: #23272e;
   min-width: 180px;
-  box-shadow: 0 2px 8px #0008;
+  box-shadow: 0 4px 16px #000a;
   z-index: 10;
   right: 0;
   top: 32px;
-  border-radius: 4px;
+  border-radius: 3px;
   overflow: hidden;
+  border: 1px solid #222;
 }
 .vs-menubar-dropdown:hover .vs-dropdown-content {
   display: block;
@@ -79,78 +81,75 @@ body {
 .vs-dropdown-content button {
   width: 100%;
   background: none;
-  color: #fff;
+  color: #d4d4d4;
   border: none;
-  padding: 10px 16px;
+  padding: 10px 18px;
   text-align: left;
   cursor: pointer;
   font-size: 1em;
+  font-family: inherit;
+  border-bottom: 1px solid #23272e;
+  transition: background 0.15s;
 }
 .vs-dropdown-content button:hover {
-  background: #505050;
+  background: #094771;
+  color: #fff;
 }
 
 .vs-sidebar {
-  background: #252526;
-  width: 160px;
+  background: #23272e;
+  width: 220px;
   min-width: 120px;
   color: #d4d4d4;
   padding: 0;
   border-right: 1px solid #222;
-  background: #23272e;
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  height: calc(100vh - 40px);
-  float: left;
+  gap: 0;
+  height: calc(100vh - 36px);
   position: absolute;
-  top: 40px;
+  top: 36px;
   left: 0;
   bottom: 0;
   z-index: 1;
+  box-shadow: 1px 0 0 #0008;
+}
+
+.vs-sidebar-section {
+  margin: 0;
+  padding: 0 0 10px 0;
+  border-bottom: 1px solid #23272e;
+}
+.vs-sidebar-header {
+  font-size: 0.97em;
+  font-weight: 600;
+  color: #569cd6;
+  padding: 14px 18px 6px 18px;
+  letter-spacing: 0.5px;
 }
 .vs-sidebar ul {
   list-style: none;
   padding: 0;
   margin: 0;
 }
-.vs-sidebar li {
-  padding: 10px 16px;
-  cursor: pointer;
-  border-radius: 3px;
-}
-.vs-sidebar li:hover {
-  background: #37373d;
-}
-
-.vs-sidebar-section {
-  margin: 0;
-  padding: 0 0 10px 0;
-  border-bottom: 1px solid #222;
-}
-.vs-sidebar-header {
-  font-size: 0.95em;
-  font-weight: bold;
-  color: #9cdcfe;
-  padding: 12px 16px 4px 16px;
-  letter-spacing: 0.5px;
-}
 .vs-sidebar-item {
-  padding: 8px 24px;
+  padding: 8px 28px;
   color: #d4d4d4;
   cursor: pointer;
   border-radius: 2px;
   margin: 2px 0;
+  font-size: 1em;
+  transition: background 0.15s, color 0.15s;
 }
 .vs-sidebar-item.selected, .vs-sidebar-item:hover {
-  background: #37373d;
+  background: #094771;
   color: #fff;
 }
 
 .vs-main {
-  margin-left: 160px;
-  padding: 28px 32px;
-  height: calc(100vh - 40px);
+  margin-left: 220px;
+  padding: 32px 36px;
+  height: calc(100vh - 36px);
   background: #1e1e1e;
   display: flex;
   flex-direction: column;
@@ -158,10 +157,10 @@ body {
 }
 
 .vs-editor-label {
-  color: #9cdcfe;
-  font-size: 1.05em;
+  color: #569cd6;
+  font-size: 1.08em;
   margin-bottom: 4px;
-  font-weight: bold;
+  font-weight: 600;
   letter-spacing: 0.5px;
 }
 
@@ -174,6 +173,9 @@ body {
   border-radius: 4px;
   background: #1e1e1e;
   margin-bottom: 8px;
+  box-shadow: 0 2px 8px #0002;
+  min-height: 180px;
+  max-height: 340px;
 }
 
 #numberscript-editor, #numberscript-highlight {
@@ -191,25 +193,33 @@ body {
   left: 0;
   z-index: 2;
   outline: none;
-  padding: 12px;
-  line-height: 1.5;
+  padding: 16px;
+  line-height: 1.6;
   border-radius: 0;
   min-height: 180px;
   max-height: 320px;
 }
 
+#numberscript-highlight {
+  color: #d4d4d4;
+  z-index: 1;
+  pointer-events: none;
+  border-radius: 0;
+  border: none;
+}
+
 .vs-runbar {
-  margin: 8px 0 0 0;
+  margin: 10px 0 0 0;
 }
 .vs-run-btn {
   background: #007acc;
   color: #fff;
   border: none;
-  padding: 8px 22px;
+  padding: 8px 26px;
   border-radius: 3px;
   font-size: 1em;
   cursor: pointer;
-  font-weight: bold;
+  font-weight: 600;
   letter-spacing: 1px;
   box-shadow: 0 2px 4px #0002;
   transition: background 0.2s;
@@ -222,12 +232,13 @@ body {
   background: #232323;
   border: 1px solid #333;
   border-radius: 4px;
-  padding: 14px 12px 10px 12px;
+  padding: 16px 14px 12px 14px;
   margin-top: 18px;
+  box-shadow: 0 2px 8px #0002;
 }
 .vs-output-header {
-  font-weight: bold;
-  color: #9cdcfe;
+  font-weight: 600;
+  color: #569cd6;
   margin-bottom: 6px;
   font-size: 1em;
   letter-spacing: 0.5px;
@@ -242,4 +253,17 @@ body {
   border: none;
   min-height: 32px;
   font-size: 1.05em;
+}
+
+/* Scrollbar styling for VS look */
+::-webkit-scrollbar {
+  width: 10px;
+  background: #23272e;
+}
+::-webkit-scrollbar-thumb {
+  background: #2c2c32;
+  border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #37373d;
 }
