@@ -238,12 +238,19 @@ body {
   gap: 10px;
 }
 
+.vs-editor-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 6px;
+  margin-top: 4px;
+}
 .vs-editor-label {
   color: #3794ff;
   font-size: 1.08em;
-  margin-bottom: 4px;
   font-weight: 600;
   letter-spacing: 0.5px;
+  margin: 0;
 }
 
 .vs-editor-container {
@@ -297,7 +304,7 @@ body {
   background: #007acc;
   color: #fff;
   border: none;
-  padding: 8px 26px;
+  padding: 7px 22px;
   border-radius: 3px;
   font-size: 1em;
   cursor: pointer;
@@ -305,9 +312,11 @@ body {
   letter-spacing: 1px;
   box-shadow: 0 2px 4px #0002;
   transition: background 0.2s;
+  margin-left: 8px;
 }
-.vs-run-btn:hover {
+.vs-run-btn:hover, .vs-run-btn:focus {
   background: #005a9e;
+  outline: none;
 }
 
 .vs-output {
@@ -335,6 +344,31 @@ body {
   border: none;
   min-height: 32px;
   font-size: 1.05em;
+}
+
+/* Status bar */
+.vs-statusbar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 28px;
+  background: #007acc;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  font-size: 0.98em;
+  padding: 0 18px;
+  z-index: 100;
+  box-shadow: 0 -1px 4px #0004;
+  border-top: 1px solid #005a9e;
+}
+.vs-statusbar-item {
+  margin-right: 18px;
+  opacity: 0.95;
+}
+.vs-statusbar-item:last-child {
+  margin-right: 0;
 }
 
 /* Scrollbar styling for VS look */
@@ -382,4 +416,21 @@ body {
 .vs-menubar-tab:hover {
   background: #23272e;
   color: #3794ff;
+}
+
+/* Focus styles for accessibility */
+button:focus, .vs-tab:focus, .vs-activitybar-icon:focus {
+  outline: 2px solid #3794ff;
+  outline-offset: 2px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  border: 0;
 }
