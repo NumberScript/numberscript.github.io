@@ -11,16 +11,31 @@ title: NumberScript IDE
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="assets/vs-theme.css">
   <link rel="stylesheet" href="assets/numberscript-highlight.css">
-  <!-- ...existing code... -->
 </head>
 <body>
   <div id="vs-ide">
-    <!-- Top menu bar -->
+    <!-- Menubar -->
     <div class="vs-menubar">
+      <button class="vs-hamburger" title="Menu">
+        <svg width="20" height="20" viewBox="0 0 20 20"><rect y="3" width="20" height="2" fill="#d4d4d4"/><rect y="9" width="20" height="2" fill="#d4d4d4"/><rect y="15" width="20" height="2" fill="#d4d4d4"/></svg>
+      </button>
+      <span class="vs-logo" title="VS Code">
+        <svg width="22" height="22" viewBox="0 0 32 32"><polygon fill="#007acc" points="2,26 16,16 2,6 6,2 30,16 6,30"/></svg>
+      </span>
       <span class="vs-title">NumberScript IDE</span>
-      <button onclick="newFile()" title="New file">New</button>
-      <button onclick="openLocal()" title="Open from local">Open</button>
+      <div class="vs-menubar-tabs">
+        <span class="vs-menubar-tab selected">File</span>
+        <span class="vs-menubar-tab">Edit</span>
+        <span class="vs-menubar-tab">Selection</span>
+        <span class="vs-menubar-tab">View</span>
+        <span class="vs-menubar-tab">Go</span>
+        <span class="vs-menubar-tab">Run</span>
+        <span class="vs-menubar-tab">Help</span>
+      </div>
+      <div style="flex:1"></div>
       <button onclick="saveLocal()" title="Save to local">Save</button>
+      <button onclick="openLocal()" title="Open from local">Open</button>
+      <button onclick="newFile()" title="New file">New</button>
       <div class="vs-menubar-dropdown">
         <button class="vs-dropdown-btn">More ▾</button>
         <div class="vs-dropdown-content">
@@ -31,21 +46,19 @@ title: NumberScript IDE
         </div>
       </div>
     </div>
-    <!-- Activity bar (VS Code style) -->
+    <!-- Activity Bar -->
     <div class="vs-activitybar">
       <div class="vs-activitybar-icon selected" title="Explorer">
-        <!-- VS Code explorer icon SVG -->
-        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-          <rect x="3" y="3" width="14" height="14" rx="2" fill="#d4d4d4"/>
-          <rect x="6" y="6" width="8" height="8" rx="1" fill="#23272e"/>
-        </svg>
+        <svg width="22" height="22" viewBox="0 0 24 24"><path fill="#d4d4d4" d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/></svg>
       </div>
-      <div class="vs-activitybar-icon" title="Output">
-        <!-- VS Code output icon SVG -->
-        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-          <rect x="4" y="4" width="12" height="12" rx="2" fill="#d4d4d4"/>
-          <rect x="7" y="7" width="6" height="6" rx="1" fill="#23272e"/>
-        </svg>
+      <div class="vs-activitybar-icon" title="Search">
+        <svg width="22" height="22" viewBox="0 0 24 24"><path fill="#d4d4d4" d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.57 4.23l5.42 5.42-1.41 1.41-5.42-5.42A6.5 6.5 0 1 1 9.5 3zm0 2A4.5 4.5 0 1 0 14 9.5A4.5 4.5 0 0 0 9.5 5z"/></svg>
+      </div>
+      <div class="vs-activitybar-icon" title="Source Control">
+        <svg width="22" height="22" viewBox="0 0 24 24"><path fill="#d4d4d4" d="M17 16.95A7 7 0 0 0 12 2a7 7 0 0 0-5 14.95V19a3 3 0 0 0 6 0v-2.05zM12 4a5 5 0 0 1 5 5c0 2.39-1.72 4.37-4 4.9V19a1 1 0 0 1-2 0v-9.1A5 5 0 0 1 12 4z"/></svg>
+      </div>
+      <div class="vs-activitybar-icon" title="Run & Debug">
+        <svg width="22" height="22" viewBox="0 0 24 24"><path fill="#d4d4d4" d="M3 22v-20l18 10-18 10z"/></svg>
       </div>
     </div>
     <!-- Sidebar -->
@@ -53,16 +66,36 @@ title: NumberScript IDE
       <div class="vs-sidebar-section">
         <div class="vs-sidebar-header">EXPLORER</div>
         <ul>
-          <li class="vs-sidebar-item selected">script.numscript</li>
+          <li class="vs-sidebar-item selected">
+            <span style="color:#3794ff;">&#x1F5CE;</span> script.numscript
+          </li>
+          <li class="vs-sidebar-item">
+            <span style="color:#6a9955;">&#x1F4C4;</span> README.md
+          </li>
         </ul>
       </div>
-      <div class="vs-sidebar-section">
-        <div class="vs-sidebar-header">OUTPUT</div>
+    </div>
+    <!-- Tabs bar -->
+    <div class="vs-tabsbar">
+      <div class="vs-tab selected">
+        <span style="color:#d7ba7d;">&#x1F5CE;</span> index.html
+        <span class="vs-tab-close" title="Close">&#10005;</span>
+      </div>
+      <div class="vs-tab">
+        <span style="color:#b5cea8;">&#x1F5CE;</span> numberscript-ide.js
+        <span class="vs-tab-close" title="Close">&#10005;</span>
+      </div>
+      <div class="vs-tab">
+        <span style="color:#b5cea8;">&#x1F5CE;</span> numberscript.js
+        <span class="vs-tab-close" title="Close">&#10005;</span>
+      </div>
+      <div class="vs-tab">
+        <span style="color:#b5cea8;">&#x1F5CE;</span> vs-theme.css
+        <span class="vs-tab-close" title="Close">&#10005;</span>
       </div>
     </div>
     <!-- Main editor area -->
     <div class="vs-main">
-      <div class="vs-editor-label">Editor</div>
       <div class="vs-editor-container">
         <textarea id="numberscript-editor" spellcheck="false" placeholder="Write your NumberScript code here..."></textarea>
         <pre id="numberscript-highlight" aria-hidden="true"></pre>
