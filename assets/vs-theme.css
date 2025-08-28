@@ -1,9 +1,13 @@
+/* VS Code Web UI inspired theme */
+
 body {
   background: #1e1e1e;
   color: #d4d4d4;
   font-family: 'Segoe UI', 'Liberation Sans', Arial, sans-serif;
   margin: 0;
   padding: 0;
+  height: 100vh;
+  overflow: hidden;
 }
 
 #vs-ide {
@@ -13,16 +17,17 @@ body {
 }
 
 .vs-menubar {
-  background: #2c2c32;
+  background: #23272e;
   color: #fff;
-  padding: 0 12px;
   height: 36px;
   display: flex;
   align-items: center;
   gap: 10px;
-  border-bottom: 1px solid #222;
+  border-bottom: 1px solid #181a1f;
   box-shadow: 0 1px 0 #0008;
   position: relative;
+  padding: 0 8px;
+  z-index: 10;
 }
 
 .vs-title {
@@ -30,27 +35,26 @@ body {
   margin-right: 24px;
   font-size: 1.08em;
   letter-spacing: 0.5px;
-  color: #d7ba7d;
+  color: #3794ff;
 }
 
 .vs-menubar button,
 .vs-dropdown-btn {
-  background: #2d2d30;
+  background: transparent;
   color: #d4d4d4;
-  border: 1px solid #222;
+  border: none;
   padding: 4px 14px;
   margin-right: 2px;
   border-radius: 2px;
   cursor: pointer;
   font-size: 1em;
   font-family: inherit;
-  transition: background 0.15s, border 0.15s;
+  transition: background 0.15s, color 0.15s;
   box-shadow: none;
 }
 .vs-menubar button:hover,
 .vs-dropdown-btn:hover {
-  background: #37373d;
-  border: 1px solid #007acc;
+  background: #2c2c32;
   color: #fff;
 }
 
@@ -96,20 +100,56 @@ body {
   color: #fff;
 }
 
+/* Activity bar (icon bar on the far left) */
+.vs-activitybar {
+  background: #2c2c32;
+  width: 48px;
+  min-width: 48px;
+  height: calc(100vh - 36px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 6px;
+  border-right: 1px solid #181a1f;
+  position: absolute;
+  top: 36px;
+  left: 0;
+  z-index: 2;
+}
+.vs-activitybar-icon {
+  width: 32px;
+  height: 32px;
+  margin: 4px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #d4d4d4;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+  font-size: 1.4em;
+}
+.vs-activitybar-icon.selected,
+.vs-activitybar-icon:hover {
+  background: #23272e;
+  color: #3794ff;
+}
+
+/* Sidebar (explorer) */
 .vs-sidebar {
   background: #23272e;
   width: 220px;
   min-width: 120px;
   color: #d4d4d4;
   padding: 0;
-  border-right: 1px solid #222;
+  border-right: 1px solid #181a1f;
   display: flex;
   flex-direction: column;
   gap: 0;
   height: calc(100vh - 36px);
   position: absolute;
   top: 36px;
-  left: 0;
+  left: 48px;
   bottom: 0;
   z-index: 1;
   box-shadow: 1px 0 0 #0008;
@@ -123,7 +163,7 @@ body {
 .vs-sidebar-header {
   font-size: 0.97em;
   font-weight: 600;
-  color: #569cd6;
+  color: #3794ff;
   padding: 14px 18px 6px 18px;
   letter-spacing: 0.5px;
 }
@@ -146,8 +186,9 @@ body {
   color: #fff;
 }
 
+/* Main area */
 .vs-main {
-  margin-left: 220px;
+  margin-left: 268px;
   padding: 32px 36px;
   height: calc(100vh - 36px);
   background: #1e1e1e;
@@ -157,7 +198,7 @@ body {
 }
 
 .vs-editor-label {
-  color: #569cd6;
+  color: #3794ff;
   font-size: 1.08em;
   margin-bottom: 4px;
   font-weight: 600;
@@ -238,7 +279,7 @@ body {
 }
 .vs-output-header {
   font-weight: 600;
-  color: #569cd6;
+  color: #3794ff;
   margin-bottom: 6px;
   font-size: 1em;
   letter-spacing: 0.5px;
