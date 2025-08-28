@@ -1,7 +1,7 @@
 {
   "client_id": "93263667086-vj6brpr3tdo0m9o8jb2f8veq2str4ric.apps.googleusercontent.com",
   "client_secret": "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",
-  "redirect_uri": "numberscript.github.io/home",
+  "redirect_uri": "YOUR_REDIRECT_URI",
   "auth_uri": "https://accounts.google.com/o/oauth2/v2/auth",
   "token_uri": "https://oauth2.googleapis.com/token",
   "scope": [
