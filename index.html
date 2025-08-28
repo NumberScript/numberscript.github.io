@@ -1,1 +1,57 @@
+---
+layout: default
+title: NumberScript IDE
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>NumberScript IDE</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Visual Studio-like styling -->
+  <link rel="stylesheet" href="assets/vs-theme.css">
+  <!-- Custom syntax highlighting -->
+  <link rel="stylesheet" href="assets/numberscript-highlight.css">
+  <!-- Jekyll assets -->
+  <!-- ...existing code... -->
+</head>
+<body>
+  <div id="vs-ide">
+    <!-- Top menu bar -->
+    <div class="vs-menubar">
+      <span class="vs-title">NumberScript IDE</span>
+      <button onclick="newFile()">New</button>
+      <button onclick="openLocal()">Open</button>
+      <button onclick="saveLocal()">Save</button>
+      <button onclick="saveAsGithub()">Save to GitHub</button>
+      <button onclick="saveToDrive()">Save to Google Drive</button>
+      <button onclick="importFromGithub()">Import from GitHub</button>
+      <button onclick="importFromDrive()">Import from Drive</button>
+    </div>
+    <!-- Sidebar -->
+    <div class="vs-sidebar">
+      <ul>
+        <li>Explorer</li>
+        <li>Output</li>
+        <!-- ...add more as needed... -->
+      </ul>
+    </div>
+    <!-- Main editor area -->
+    <div class="vs-main">
+      <div class="vs-editor-container">
+        <textarea id="numberscript-editor" spellcheck="false" placeholder="Write your NumberScript code here..."></textarea>
+        <pre id="numberscript-highlight" aria-hidden="true"></pre>
+      </div>
+      <div class="vs-output">
+        <label>Output:</label>
+        <pre id="numberscript-output"></pre>
+      </div>
+      <button onclick="runNumberScript()">Run</button>
+    </div>
+  </div>
+  <script src="assets/numberscript.js"></script>
+  <script src="assets/numberscript-ide.js"></script>
+</body>
+</html>
 

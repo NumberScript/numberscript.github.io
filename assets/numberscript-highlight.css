@@ -1,0 +1,6 @@
+.ns-keyword { color: #569cd6; font-weight: bold; }
+.ns-number  { color: #b5cea8; }
+.ns-operator { color: #d4d4d4; }
+.ns-function { color: #dcdcaa; }
+.ns-variable { color: #9cdcfe; }
+.ns-comment  { color: #6a9955; font-style: italic; }
