@@ -1,0 +1,12 @@
+{
+  "client_id": "YOUR_GOOGLE_CLIENT_ID",
+  "client_secret": "YOUR_GOOGLE_CLIENT_SECRET",
+  "redirect_uri": "YOUR_GOOGLE_REDIRECT_URI",
+  "auth_uri": "https://accounts.google.com/o/oauth2/v2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "scope": [
+    "openid",
+    "email",
+    "profile"
+  ]
+}

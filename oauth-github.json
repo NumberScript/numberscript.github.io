@@ -1,0 +1,11 @@
+{
+  "client_id": "YOUR_GITHUB_CLIENT_ID",
+  "client_secret": "YOUR_GITHUB_CLIENT_SECRET",
+  "redirect_uri": "YOUR_GITHUB_REDIRECT_URI",
+  "auth_uri": "https://github.com/login/oauth/authorize",
+  "token_uri": "https://github.com/login/oauth/access_token",
+  "scope": [
+    "read:user",
+    "user:email"
+  ]
+}
