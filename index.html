@@ -9,11 +9,8 @@ title: NumberScript IDE
   <meta charset="UTF-8">
   <title>NumberScript IDE</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Visual Studio-like styling -->
   <link rel="stylesheet" href="assets/vs-theme.css">
-  <!-- Custom syntax highlighting -->
   <link rel="stylesheet" href="assets/numberscript-highlight.css">
-  <!-- Jekyll assets -->
   <!-- ...existing code... -->
 </head>
 <body>
@@ -21,33 +18,45 @@ title: NumberScript IDE
     <!-- Top menu bar -->
     <div class="vs-menubar">
       <span class="vs-title">NumberScript IDE</span>
-      <button onclick="newFile()">New</button>
-      <button onclick="openLocal()">Open</button>
-      <button onclick="saveLocal()">Save</button>
-      <button onclick="saveAsGithub()">Save to GitHub</button>
-      <button onclick="saveToDrive()">Save to Google Drive</button>
-      <button onclick="importFromGithub()">Import from GitHub</button>
-      <button onclick="importFromDrive()">Import from Drive</button>
+      <button onclick="newFile()" title="New file">New</button>
+      <button onclick="openLocal()" title="Open from local">Open</button>
+      <button onclick="saveLocal()" title="Save to local">Save</button>
+      <div class="vs-menubar-dropdown">
+        <button class="vs-dropdown-btn">More ▾</button>
+        <div class="vs-dropdown-content">
+          <button onclick="saveAsGithub()">Save to GitHub</button>
+          <button onclick="saveToDrive()">Save to Google Drive</button>
+          <button onclick="importFromGithub()">Import from GitHub</button>
+          <button onclick="importFromDrive()">Import from Drive</button>
+        </div>
+      </div>
     </div>
     <!-- Sidebar -->
     <div class="vs-sidebar">
-      <ul>
-        <li>Explorer</li>
-        <li>Output</li>
-        <!-- ...add more as needed... -->
-      </ul>
+      <div class="vs-sidebar-section">
+        <div class="vs-sidebar-header">Explorer</div>
+        <ul>
+          <li class="vs-sidebar-item selected">script.numscript</li>
+        </ul>
+      </div>
+      <div class="vs-sidebar-section">
+        <div class="vs-sidebar-header">Output</div>
+      </div>
     </div>
     <!-- Main editor area -->
     <div class="vs-main">
+      <div class="vs-editor-label">Editor</div>
       <div class="vs-editor-container">
         <textarea id="numberscript-editor" spellcheck="false" placeholder="Write your NumberScript code here..."></textarea>
         <pre id="numberscript-highlight" aria-hidden="true"></pre>
       </div>
+      <div class="vs-runbar">
+        <button onclick="runNumberScript()" class="vs-run-btn">▶ Run</button>
+      </div>
       <div class="vs-output">
-        <label>Output:</label>
+        <div class="vs-output-header">Output</div>
         <pre id="numberscript-output"></pre>
       </div>
-      <button onclick="runNumberScript()">Run</button>
     </div>
   </div>
   <script src="assets/numberscript.js"></script>
