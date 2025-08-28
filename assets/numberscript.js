@@ -6,18 +6,24 @@ function runNumberScript() {
     const lines = code.split('\n');
     for (let line of lines) {
       line = line.trim();
+      if (!line) continue;
       if (line.startsWith('solve ')) {
         const expr = line.slice(6);
         // Evaluate math expression safely
-        output += solveExpression(expr) + '\n';
+        const result = solveExpression(expr);
+        output += `solve ${expr} = ${result}\n`;
       }
       // ...add more commands as needed...
     }
   } catch (e) {
-    output = 'Error: ' + e.message;
+    output = 'Error: ' + e.message + (e.stack ? '\n' + e.stack : '');
   }
+  // Escape output for HTML safety
   document.getElementById('numberscript-output').textContent = output.trim();
 }
+
+// Make available for IDE.js to wrap
+window._runNumberScript = runNumberScript;
 
 function solveExpression(expr) {
   // Only allow numbers, operators, parentheses, Math functions

@@ -24,20 +24,20 @@ title: NumberScript IDE
       </span>
       <span class="vs-title">NumberScript IDE</span>
       <div class="vs-menubar-tabs" role="tablist">
-        <span class="vs-menubar-tab selected" role="tab" aria-selected="true">File</span>
-        <span class="vs-menubar-tab" role="tab">Edit</span>
-        <span class="vs-menubar-tab" role="tab">Selection</span>
-        <span class="vs-menubar-tab" role="tab">View</span>
-        <span class="vs-menubar-tab" role="tab">Go</span>
-        <span class="vs-menubar-tab" role="tab">Run</span>
-        <span class="vs-menubar-tab" role="tab">Help</span>
+        <span class="vs-menubar-tab selected" role="tab" aria-selected="true" tabindex="0">File</span>
+        <span class="vs-menubar-tab" role="tab" tabindex="0">Edit</span>
+        <span class="vs-menubar-tab" role="tab" tabindex="0">Selection</span>
+        <span class="vs-menubar-tab" role="tab" tabindex="0">View</span>
+        <span class="vs-menubar-tab" role="tab" tabindex="0">Go</span>
+        <span class="vs-menubar-tab" role="tab" tabindex="0">Run</span>
+        <span class="vs-menubar-tab" role="tab" tabindex="0">Help</span>
       </div>
       <div style="flex:1"></div>
       <button onclick="newFile()" title="New file (Ctrl+N)" aria-label="New file">New</button>
       <button onclick="openLocal()" title="Open from local (Ctrl+O)" aria-label="Open file">Open</button>
       <button onclick="saveLocal()" title="Save to local (Ctrl+S)" aria-label="Save file">Save</button>
-      <div class="vs-menubar-dropdown">
-        <button class="vs-dropdown-btn" aria-haspopup="true" aria-expanded="false" title="More options">More ▾</button>
+      <div class="vs-menubar-dropdown" tabindex="0">
+        <button class="vs-dropdown-btn" aria-haspopup="true" aria-expanded="false" title="More options" aria-label="More options" onclick="toggleDropdown(event)">More ▾</button>
         <div class="vs-dropdown-content" role="menu">
           <button onclick="saveAsGithub()" role="menuitem">Save to GitHub</button>
           <button onclick="saveToDrive()" role="menuitem">Save to Google Drive</button>
@@ -77,7 +77,7 @@ title: NumberScript IDE
     </aside>
     <!-- Tabs bar -->
     <div class="vs-tabsbar" role="tablist" aria-label="Open editors">
-      <div class="vs-tab selected" role="tab" aria-selected="true">
+      <div class="vs-tab selected" role="tab" aria-selected="true" tabindex="0">
         <span style="color:#d7ba7d;" aria-hidden="true">&#x1F5CE;</span> script.numscript
         <span class="vs-tab-close" title="Close" tabindex="0">&#10005;</span>
       </div>
@@ -90,7 +90,7 @@ title: NumberScript IDE
       </div>
       <div class="vs-editor-container">
         <label for="numberscript-editor" class="sr-only">NumberScript Editor</label>
-        <textarea id="numberscript-editor" spellcheck="false" placeholder="Write your NumberScript code here..." aria-label="NumberScript Editor"></textarea>
+        <textarea id="numberscript-editor" spellcheck="false" autocomplete="off" placeholder="Write your NumberScript code here..." aria-label="NumberScript Editor"></textarea>
         <pre id="numberscript-highlight" aria-hidden="true"></pre>
       </div>
       <section class="vs-output" aria-label="Output">
@@ -116,6 +116,7 @@ title: NumberScript IDE
     const colSpan = document.getElementById('cursor-col');
     editor.addEventListener('keyup', updateCursor);
     editor.addEventListener('click', updateCursor);
+    editor.addEventListener('input', updateCursor);
     function updateCursor() {
       const val = editor.value.substr(0, editor.selectionStart);
       const lines = val.split('\n');
@@ -123,6 +124,52 @@ title: NumberScript IDE
       colSpan.textContent = lines[lines.length - 1].length + 1;
     }
     updateCursor();
+
+    // Keyboard shortcuts
+    document.addEventListener('keydown', function(e) {
+      if (e.ctrlKey && e.key === 'Enter') {
+        runNumberScript();
+        e.preventDefault();
+      }
+      if (e.ctrlKey && (e.key === 's' || e.key === 'S')) {
+        saveLocal();
+        e.preventDefault();
+      }
+      if (e.ctrlKey && (e.key === 'n' || e.key === 'N')) {
+        newFile();
+        e.preventDefault();
+      }
+      if (e.ctrlKey && (e.key === 'o' || e.key === 'O')) {
+        openLocal();
+        e.preventDefault();
+      }
+    });
+
+    // Dropdown menu close on blur
+    function toggleDropdown(e) {
+      const btn = e.currentTarget;
+      const dropdown = btn.parentElement.querySelector('.vs-dropdown-content');
+      dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+      btn.setAttribute('aria-expanded', dropdown.style.display === 'block');
+      function closeDropdown(ev) {
+        if (!btn.parentElement.contains(ev.relatedTarget)) {
+          dropdown.style.display = 'none';
+          btn.setAttribute('aria-expanded', 'false');
+          btn.removeEventListener('blur', closeDropdown);
+        }
+      }
+      btn.addEventListener('blur', closeDropdown);
+    }
+    // Close dropdown if clicking outside
+    document.addEventListener('click', function(e) {
+      document.querySelectorAll('.vs-dropdown-content').forEach(function(drop) {
+        if (!drop.contains(e.target) && !drop.parentElement.contains(e.target)) {
+          drop.style.display = 'none';
+          const btn = drop.parentElement.querySelector('.vs-dropdown-btn');
+          if (btn) btn.setAttribute('aria-expanded', 'false');
+        }
+      });
+    });
   </script>
 </body>
 </html>

@@ -28,7 +28,12 @@ function highlightNumberScript(code) {
 
 function updateHighlight() {
   const code = editor.value;
-  highlight.innerHTML = highlightNumberScript(code);
+  highlight.innerHTML = highlightNumberScript(code) + '<br>';
+  // Sync scroll height
+  highlight.scrollTop = editor.scrollTop;
+  highlight.scrollLeft = editor.scrollLeft;
+  highlight.style.height = editor.scrollHeight + 'px';
+  editor.style.height = editor.scrollHeight + 'px';
 }
 
 editor.addEventListener('input', updateHighlight);
@@ -38,11 +43,25 @@ editor.addEventListener('scroll', () => {
 });
 updateHighlight();
 
+// Tab inserts spaces
+editor.addEventListener('keydown', function(e) {
+  if (e.key === 'Tab') {
+    e.preventDefault();
+    const start = editor.selectionStart;
+    const end = editor.selectionEnd;
+    const value = editor.value;
+    editor.value = value.substring(0, start) + '    ' + value.substring(end);
+    editor.selectionStart = editor.selectionEnd = start + 4;
+    updateHighlight();
+  }
+});
+
 // --- File Operations ---
 function newFile() {
   editor.value = '';
   updateHighlight();
   document.getElementById('numberscript-output').textContent = '';
+  editor.focus();
 }
 
 function saveLocal() {
@@ -50,7 +69,9 @@ function saveLocal() {
   const a = document.createElement('a');
   a.href = URL.createObjectURL(blob);
   a.download = 'script.numscript';
+  document.body.appendChild(a);
   a.click();
+  document.body.removeChild(a);
 }
 
 function openLocal() {
@@ -82,4 +103,34 @@ function importFromGithub() {
 }
 function importFromDrive() {
   alert('Import from Google Drive: Not implemented in this demo.');
+}
+
+// --- Output area auto-scroll ---
+function scrollOutputToBottom() {
+  const out = document.getElementById('numberscript-output');
+  out.scrollTop = out.scrollHeight;
+}
+
+// --- Accessibility: focus output on run ---
+window.runNumberScript = function() {
+  // Call the actual run logic from numberscript.js
+  if (typeof window._runNumberScript === 'function') {
+    window._runNumberScript();
+    setTimeout(() => {
+      document.getElementById('numberscript-output').focus();
+      scrollOutputToBottom();
+    }, 10);
+  }
+};
+
+// Patch: wrap the original runNumberScript so the IDE can hook it
+if (typeof window.runNumberScriptOrig !== 'function' && typeof window.runNumberScript === 'function') {
+  window._runNumberScript = window.runNumberScript;
+  window.runNumberScript = function() {
+    window._runNumberScript();
+    setTimeout(() => {
+      document.getElementById('numberscript-output').focus();
+      scrollOutputToBottom();
+    }, 10);
+  };
 }
