@@ -230,20 +230,22 @@ body {
 .vs-main {
   margin-left: 268px;
   margin-top: 34px;
-  padding: 32px 36px;
-  height: calc(100vh - 36px - 34px);
+  padding: 16px 24px 0 24px;
+  height: calc(100vh - 36px - 34px - 28px); /* minus menubar, tabs, statusbar */
   background: #1e1e1e;
   display: flex;
   flex-direction: column;
   gap: 10px;
+  box-sizing: border-box;
+  min-width: 0;
 }
 
 .vs-editor-toolbar {
   display: flex;
   align-items: center;
   gap: 16px;
-  margin-bottom: 6px;
-  margin-top: 4px;
+  margin-bottom: 4px;
+  margin-top: 0;
 }
 .vs-editor-label {
   color: #3794ff;
@@ -255,7 +257,7 @@ body {
 
 .vs-editor-container {
   position: relative;
-  flex: 1 1 auto;
+  flex: 1 1 0;
   display: flex;
   flex-direction: column;
   border: 1px solid #333;
@@ -263,13 +265,17 @@ body {
   background: #1e1e1e;
   margin-bottom: 8px;
   box-shadow: 0 2px 8px #0002;
-  min-height: 180px;
-  max-height: 340px;
+  min-height: 160px;
+  max-height: none;
+  height: auto;
+  overflow: hidden;
 }
 
 #numberscript-editor, #numberscript-highlight {
   width: 100%;
-  height: 300px;
+  height: 100%;
+  min-height: 120px;
+  max-height: none;
   background: transparent;
   color: transparent;
   caret-color: #d4d4d4;
@@ -285,8 +291,7 @@ body {
   padding: 16px;
   line-height: 1.6;
   border-radius: 0;
-  min-height: 180px;
-  max-height: 320px;
+  box-sizing: border-box;
 }
 
 #numberscript-highlight {
@@ -324,8 +329,10 @@ body {
   border: 1px solid #333;
   border-radius: 4px;
   padding: 16px 14px 12px 14px;
-  margin-top: 18px;
+  margin-top: 8px;
   box-shadow: 0 2px 8px #0002;
+  min-height: 60px;
+  flex: 0 0 auto;
 }
 .vs-output-header {
   font-weight: 600;
